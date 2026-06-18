@@ -25,26 +25,26 @@
             text-align: center;
             padding: 40px 20px;
             
-            /* Stylizacja tła - wartości nadpiszemy dynamicznie w JavaScript */
+            /* Stylizacja tła */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-            background-color: #0f2027; /* Kolor zapasowy */
+            background-color: #ffffff; /* Domyślne białe tło, jeśli link nie zadziała */
             
             position: relative;
             transition: background 0.5s ease;
         }
 
-        /* GŁÓWNY KONTENER (Z efektem szkła, idealnie pasuje do ciemnego gifa) */
+        /* GŁÓWNY KONTENER - Teraz ciemny i wyrazisty, idealny na jasne i białe tła */
         .container {
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(20, 24, 33, 0.85); /* Ciemna baza */
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             padding: 40px 30px;
             border-radius: 24px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Mocny cień oddzielający od tła */
             max-width: 650px;
             width: 100%;
             animation: fadeInUp 1.2s ease-out;
@@ -55,10 +55,12 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Nagłówek - Żywy złoty/żółty kolor, doskonale widoczny */
         h1 {
             font-size: 2.5rem;
+            color: #ffeb3b; 
             margin-bottom: 20px;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
             animation: pulse 2s infinite;
         }
 
@@ -70,10 +72,10 @@
 
         p.intro {
             font-size: 1.1rem;
+            color: #e0e0e0;
             margin-bottom: 25px;
             line-height: 1.6;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
-            opacity: 0.9;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
         .compliment-box {
@@ -84,56 +86,60 @@
             margin-bottom: 25px;
         }
 
+        /* Tekst komplementu - Jasny neonowy turkus */
         #compliment {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: bold;
             font-style: italic;
-            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+            color: #00e5ff; 
+            text-shadow: 0 2px 10px rgba(0, 229, 255, 0.4);
             transition: all 0.3s ease;
         }
 
+        /* Przycisk - Kontrastowy, ciemny z efektem poświaty */
         button.magic-btn {
-            background: #fff;
-            color: #111;
-            border: none;
+            background: #1f2430;
+            color: #00e5ff;
+            border: 2px solid #00e5ff;
             padding: 15px 35px;
             font-size: 1.1rem;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
             margin-bottom: 35px;
         }
 
         button.magic-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255,255,255,0.2);
-            background: #f0f0f0;
+            background: #00e5ff;
+            color: #111;
+            box-shadow: 0 0 20px rgba(0, 229, 255, 0.6);
         }
 
         /* SEKCJA Z DŁUŻSZĄ NOTATKĄ */
         .personal-note {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
             padding: 25px;
             text-align: left;
             line-height: 1.8;
             font-size: 1.1rem;
-            border-left: 5px solid #23a6d5;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.2);
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            color: #f5f5f5;
+            border-left: 5px solid #00e5ff;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
         }
 
         .personal-note p { margin-bottom: 15px; }
         .personal-note p:last-child { margin-bottom: 0; }
-        .signature { margin-top: 20px; text-align: right; font-weight: bold; font-style: italic; color: #23a6d5; }
+        .signature { margin-top: 20px; text-align: right; font-weight: bold; font-style: italic; color: #00e5ff; }
 
         /* Latające serduszka w tle */
         .heart {
             position: absolute;
             font-size: 2rem;
-            opacity: 0.6;
+            opacity: 0.7;
             animation: floatUp 4s linear infinite;
             bottom: -50px;
             pointer-events: none;
@@ -141,7 +147,7 @@
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
             100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
     </style>
@@ -170,11 +176,16 @@
     <script>
         // ========================================================
         // MIEJSCE NA LINK DO TŁA: Tutaj możesz wkleić dowolny link!
+        // Jeśli link będzie pusty (""), strona wyświetli się na czystym białym tle.
         // ========================================================
         const BACKGROUND_URL = "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXlzNHR6ZXEyeWk3b2UyZHBudDgweTlwOGJmbjc4NmNsODVxZ3ZoMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/cGv3PIea61i9zIHkQ4/giphy.gif";
         
-        // Funkcja ustawiająca tło automatycznie po załadowaniu strony
-        document.body.style.backgroundImage = `url('${BACKGROUND_URL}')`;
+        // Warunek sprawdzający, czy podano link do tła
+        if (BACKGROUND_URL && BACKGROUND_URL.trim() !== "") {
+            document.body.style.backgroundImage = `url('${BACKGROUND_URL}')`;
+        } else {
+            document.body.style.backgroundColor = "#ffffff";
+        }
 
         // Lista miłych rzeczy do wylosowania
         const compliments = [
