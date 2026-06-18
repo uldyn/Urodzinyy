@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wiadomość dla Ciebie! ✨</title>
-    <!-- Pobieramy bibliotekę do konfetti, żeby działo się coś super -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         * {
@@ -13,242 +12,38 @@
             padding: 0;
         }
 
+        /* Definiujemy style dla różnych motywów tła */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Płynna animacja zmieniającego się tła */
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            overflow-y: auto; /* Pozwala na przewijanie, jeśli notatka będzie bardzo długa */
+            overflow-y: auto;
             color: #fff;
             text-align: center;
             padding: 40px 20px;
+            background-size: 400% 400%;
+            transition: background 0.8s ease;
+            position: relative;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* --- DOSTĘPNE MOTYWY TŁA --- */
+        body.theme-aura {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
-
-        .container {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 40px 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            max-width: 650px;
-            width: 100%;
-            animation: fadeInUp 1.2s ease-out;
+        body.theme-sunset {
+            background: linear-gradient(-45deg, #f12711, #f5af19, #e73c7e);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
         }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        body.theme-space {
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
+            background-size: 400% 400%;
+            animation: gradientBG 18s ease infinite;
         }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-        p.intro {
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            line-height: 1.6;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-            opacity: 0.9;
-        }
-
-        .compliment-box {
-            min-height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 25px;
-        }
-
-        #compliment {
-            font-size: 1.5rem;
-            font-weight: bold;
-            font-style: italic;
-            color: #fff;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
-            transition: all 0.3s ease;
-        }
-
-        button {
-            background: #fff;
-            color: #e73c7e;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-            margin-bottom: 35px;
-        }
-
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            background: #f8f8f8;
-        }
-
-        button:active {
-            transform: translateY(-1px);
-        }
-
-        /* --- NOWA SEKCJA: DŁUŻSZA NOTATKA --- */
-        .personal-note {
-            background: rgba(0, 0, 0, 0.15);
-            border-radius: 15px;
-            padding: 25px;
-            text-align: left; /* Zmiana na justowanie do lewej, żeby dłuższy tekst czytało się wygodniej */
-            line-height: 1.8;
-            font-size: 1.1rem;
-            border-left: 5px solid #fff;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
-        }
-
-        .personal-note p {
-            margin-bottom: 15px;
-        }
-
-        .personal-note p:last-child {
-            margin-bottom: 0;
-        }
-
-        .signature {
-            margin-top: 20px;
-            text-align: right;
-            font-weight: bold;
-            font-style: italic;
-        }
-        /* ------------------------------------ */
-
-        /* Dodatkowe małe pływające serduszka w tle */
-        .heart {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.6;
-            animation: floatUp 4s linear infinite;
-            bottom: -50px;
-            pointer-events: none;
-            z-index: -1; /* Serduszka latają w tle, nie zasłaniając tekstu */
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1>Hej Ty! Spójrz tutaj... 👀</h1>
-        <p class="intro">Kliknij przycisk poniżej, aby dowiedzieć się czegoś bardzo ważnego o sobie. Nie zapomnij włączyć dźwięku w myślach!</p>
-        
-        <div class="compliment-box">
-            <p id="compliment">Czekam na Twoje kliknięcie... ✨</p>
-        </div>
-
-        <button onclick="revealMagic()">Kliknij po dawkę magii! ❤️</button>
-
-        <!-- TUTAJ WPISZ SWOJĄ DŁUŻSZĄ NOTATKĘ -->
-        <div class="personal-note">
-            <p><strong>A tak zupełnie szczerze...</strong></p>
-            <p>Chcę, żebyś o czymś pamiętał/a. Czasami w biegu dnia codziennego zapominamy, jak wielki wpływ mamy na otaczających nas ludzi. Twoja obecność, pomocna dłoń i to, w jaki sposób podchodzisz do świata, robi ogromną różnicę.</p>
-            <p>Nawet jeśli masz gorszy dzień i wydaje Ci się, że nic nie idzie po Twojej myśli – spójrz wstecz na wszystko, co udało Ci się osiągnąć. Jesteś niesamowicie silną osobą o wielkim sercu. Nie zmieniaj się, bo dokładnie taki/a, jaki/a jesteś, robisz ten świat piękniejszym miejscem.</p>
-            <div class="signature">~ Twój Tajemniczy Wielbiciel 😉</div>
-        </div>
-        <!-- ------------------------------------ -->
-    </div>
-
-    <script>
-        // Lista miłych rzeczy do wylosowania
-        const compliments = [
-            "Jesteś absolutnie wyjątkową osobą! 🌟",
-            "Twój uśmiech potrafi rozjaśnić nawet najciemniejszy dzień! 😊",
-            "Świat jest lepszym miejscem, ponieważ Ty na nim jesteś! 🌍",
-            "Masz w sobie ogromną siłę, pamiętaj o tym! 💪",
-            "Twoja energia i dobroć są zaraźliwe! ✨",
-            "Zasługujesz na wszystko, co najlepsze! 👑",
-            "Robisz większą różnicę w życiu innych, niż Ci się wydaje! ❤️",
-            "Jesteś inteligentną, piękną i wartościową osobą! 💎"
-        ];
-
-        let lastIndex = -1;
-
-        function revealMagic() {
-            // 1. Efekt Konfetti
-            confetti({
-                particleCount: 150,
-                spread: 80,
-                origin: { y: 0.6 }
-            });
-
-            // 2. Losowanie komplementu
-            let randomIndex;
-            do {
-                randomIndex = Math.floor(Math.random() * compliments.length);
-            } while (randomIndex === lastIndex);
-            
-            lastIndex = randomIndex;
-
-            const complimentText = document.getElementById('compliment');
-            
-            // Efekt płynnego przejścia tekstu
-            complimentText.style.opacity = 0;
-            complimentText.style.transform = "scale(0.8)";
-            
-            setTimeout(() => {
-                complimentText.innerText = compliments[randomIndex];
-                complimentText.style.opacity = 1;
-                complimentText.style.transform = "scale(1)";
-            }, 200);
-
-            // 3. Tworzenie małego latającego serduszka w tle przy każdym kliknięciu
-            createHeart();
-        }
-
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.classList.add('heart');
-            heart.innerText = ['❤️', '💖', '✨', '🌸', '⭐'][Math.floor(Math.random() * 5)];
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = (Math.random() * 3 + 3) + 's'; // 3-6s
-            heart.style.fontSize = (Math.random() * 20 + 20) + 'px'; // 20-40px
-            
-            document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 6000);
-        }
-    </script>
-</body>
-</html>
+        body.theme-pastel {
+            background: linear-gradient(-
