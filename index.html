@@ -23,10 +23,10 @@
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            overflow: hidden;
+            overflow-y: auto; /* Pozwala na przewijanie, jeśli notatka będzie bardzo długa */
             color: #fff;
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         @keyframes gradientBG {
@@ -43,7 +43,7 @@
             padding: 40px 30px;
             border-radius: 20px;
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
             animation: fadeInUp 1.2s ease-out;
         }
@@ -73,10 +73,11 @@
         }
 
         p.intro {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
             line-height: 1.6;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            opacity: 0.9;
         }
 
         .compliment-box {
@@ -84,7 +85,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         #compliment {
@@ -107,6 +108,7 @@
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+            margin-bottom: 35px;
         }
 
         button:hover {
@@ -119,19 +121,48 @@
             transform: translateY(-1px);
         }
 
+        /* --- NOWA SEKCJA: DŁUŻSZA NOTATKA --- */
+        .personal-note {
+            background: rgba(0, 0, 0, 0.15);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: left; /* Zmiana na justowanie do lewej, żeby dłuższy tekst czytało się wygodniej */
+            line-height: 1.8;
+            font-size: 1.1rem;
+            border-left: 5px solid #fff;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .personal-note p {
+            margin-bottom: 15px;
+        }
+
+        .personal-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+            font-style: italic;
+        }
+        /* ------------------------------------ */
+
         /* Dodatkowe małe pływające serduszka w tle */
         .heart {
             position: absolute;
             font-size: 2rem;
             opacity: 0.6;
-            animation: float Up 4s linear infinite;
+            animation: floatUp 4s linear infinite;
             bottom: -50px;
             pointer-events: none;
+            z-index: -1; /* Serduszka latają w tle, nie zasłaniając tekstu */
         }
 
         @keyframes floatUp {
             0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
-            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
@@ -146,6 +177,15 @@
         </div>
 
         <button onclick="revealMagic()">Kliknij po dawkę magii! ❤️</button>
+
+        <!-- TUTAJ WPISZ SWOJĄ DŁUŻSZĄ NOTATKĘ -->
+        <div class="personal-note">
+            <p><strong>A tak zupełnie szczerze...</strong></p>
+            <p>Chcę, żebyś o czymś pamiętał/a. Czasami w biegu dnia codziennego zapominamy, jak wielki wpływ mamy na otaczających nas ludzi. Twoja obecność, pomocna dłoń i to, w jaki sposób podchodzisz do świata, robi ogromną różnicę.</p>
+            <p>Nawet jeśli masz gorszy dzień i wydaje Ci się, że nic nie idzie po Twojej myśli – spójrz wstecz na wszystko, co udało Ci się osiągnąć. Jesteś niesamowicie silną osobą o wielkim sercu. Nie zmieniaj się, bo dokładnie taki/a, jaki/a jesteś, robisz ten świat piękniejszym miejscem.</p>
+            <div class="signature">~ Twój Tajemniczy Wielbiciel 😉</div>
+        </div>
+        <!-- ------------------------------------ -->
     </div>
 
     <script>
@@ -171,7 +211,7 @@
                 origin: { y: 0.6 }
             });
 
-            // 2. Losowanie komplementu (tak, żeby się nie powtórzył od razu)
+            // 2. Losowanie komplementu
             let randomIndex;
             do {
                 randomIndex = Math.floor(Math.random() * compliments.length);
