@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wiadomość dla Ciebie! ✨</title>
+    <title>Wiadomość dla smutnego chomika</title>
     <!-- Pobieramy bibliotekę do konfetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.j"></script>
     <style>
         * {
             box-sizing: border-box;
@@ -155,21 +155,21 @@
 <body>
 
     <div class="container">
-        <h1>Hej Ty! Spójrz tutaj... 👀</h1>
-        <p class="intro">Kliknij przycisk poniżej, aby dowiedzieć się czegoś bardzo ważnego o sobie. Nie zapomnij włączyć dźwięku w myślach!</p>
+        <h1>Ważna wiadomość dla smutnego chomika</h1>
+        <p class="intro">Zawsze będziesz chomikiem dla mnie, nie wymigasz się od tego</p>
         
         <div class="compliment-box">
-            <p id="compliment">Czekam na Twoje kliknięcie... ✨</p>
+            <p id="compliment">Jebnij w przycisk</p>
         </div>
 
-        <button class="magic-btn" onclick="revealMagic()">Kliknij po dawkę magii! ❤️</button>
+        <button class="magic-btn" onclick="revealMagic()">Jeb</button>
 
         <!-- SEKCJA Z DŁUŻSZĄ NOTATKĄ -->
         <div class="personal-note">
             <p><strong>A tak zupełnie szczerze...</strong></p>
-            <p>Chcę, żebyś o czymś pamiętał/a. Czasami w biegu dnia codziennego zapominamy, jak wielki wpływ mamy na otaczających nas ludzi. Twoja obecność, pomocna dłoń i to, w jaki sposób podchodzisz do świata, robi ogromną różnicę.</p>
-            <p>Nawet jeśli masz gorszy dzień i wydaje Ci się, że nic nie idzie po Twojej myśli – spójrz wstecz na wszystko, co udało Ci się osiągnąć. Jesteś niesamowicie silną osobą o wielkim sercu. Nie zmieniaj się, bo dokładnie taki/a, jaki/a jesteś, robisz ten świat piękniejszym miejscem.</p>
-            <div class="signature">~ Twój Tajemniczy Wielbiciel 😉</div>
+            <p>Chcę, żebyś o czymś pamiętała. Jesteś naprawdę świetną osobą i nigdy masz w to nie zwątpić</p>
+            <p>Zasługujesz serio na wszystko co najlepsze i wiedz że możesz zawsze na mnie liczyć, jeżeli czujesz się źle, ja zawsze jestem. I ogólnie jestem z ciebie bardzo dumny że dajesz sobie radę i doceniam to jak bardzo ty mi też pomagasz</p>
+            <div class="signature">~ Skibidi cwel</div>
         </div>
     </div>
 
@@ -189,14 +189,12 @@
 
         // Lista miłych rzeczy do wylosowania
         const compliments = [
-            "Jesteś absolutnie wyjątkową osobą! 🌟",
-            "Twój uśmiech potrafi rozjaśnić nawet najciemniejszy dzień! 😊",
-            "Świat jest lepszym miejscem, ponieważ Ty na nim jesteś! 🌍",
-            "Masz w sobie ogromną siłę, pamiętaj o tym! 💪",
-            "Twoja energia i dobroć są zaraźliwe! ✨",
-            "Zasługujesz na wszystko, co najlepsze! 👑",
-            "Robisz większą różnicę w życiu innych, niż Ci się wydaje! ❤️",
-            "Jesteś inteligentną, piękną i wartościową osobą! 💎"
+            "Tung Tung Tung Sahur",
+            "Jesteś najlepszym duo",
+            "Nie zmieniaj się nigdy",
+            "Jesteś super",
+            "Zasługujesz na wszystko, co najlepsze",
+            "Sigma jesteś",
         ];
 
         let lastIndex = -1;
@@ -236,7 +234,7 @@
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.innerText = ['❤️', '💖', '✨', '🌸', '⭐'][Math.floor(Math.random() * 5)];
+            heart.innerText = ['😈', '😈', '😈', '😈', '😈'][Math.floor(Math.random() * 5)];
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
             heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
