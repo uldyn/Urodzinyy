@@ -1,57 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wszystkiego Najlepszego 🎉</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <style>
-    body {
-   background-image: url(https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExcXppcmhkbnpxemRxNGVmbWZ4em93ZzJyZHY0M2NkZmFra3I5anI5dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KaEdZYhGcfLKv1Bh5B/giphy.gif);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiadomość dla Ciebie! ✨</title>
+    <!-- Pobieramy bibliotekę do konfetti, żeby działo się coś super -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Płynna animacja zmieniającego się tła */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            overflow: hidden;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        p.intro {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .compliment-box {
+            min-height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        #compliment {
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-style: italic;
+            color: #fff;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+        }
+
+        button {
+            background: #fff;
+            color: #e73c7e;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: #f8f8f8;
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Dodatkowe małe pływające serduszka w tle */
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.6;
+            animation: float Up 4s linear infinite;
+            bottom: -50px;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+        }
+    </style>
 </head>
-<body class="min-h-screen flex items-center justify-center px-4">
-  <div class="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 max-w-md w-full text-center">
-    <h1 class="text-3xl sm:text-4xl font-extrabold text-pink-500 mb-4">Wszystkiego najlepszego</h1>
-    <p class="text-base sm:text-lg text-gray-700 mb-6">
-      Jezu, to już 19 lat.. Szybko to minęło, dopiero miałaś 13. Chciałbym życzyć ci spełnienia wszystkich marzeń które masz. Jesteś naprawdę świetną osobą i nie zmieniaj się nigdy. Przepraszam że cię wiele razy zawiodłem.
-      Mogę jedynie czuwać jakkolwiek nad tobą i próbować cię wspierać z daleka. Zawsze możesz na mnie liczyć i nigdy się nie poddawaj.
-    </p>
+<body>
 
-    <div class="text-5xl sm:text-6xl mb-6"><3</div>
+    <div class="container">
+        <h1>Hej Ty! Spójrz tutaj... 👀</h1>
+        <p class="intro">Kliknij przycisk poniżej, aby dowiedzieć się czegoś bardzo ważnego o sobie. Nie zapomnij włączyć dźwięku w myślach!</p>
+        
+        <div class="compliment-box">
+            <p id="compliment">Czekam na Twoje kliknięcie... ✨</p>
+        </div>
 
-    <p class="text-gray-600 italic text-sm sm:text-base">
-      "Zasługujesz na wszystko co najlepsze."
-    </p>
+        <button onclick="revealMagic()">Kliknij po dawkę magii! ❤️</button>
+    </div>
 
-    <button onclick="celebrate()" class="mt-6 px-6 py-3 bg-pink-500 text-white rounded-xl shadow hover:bg-pink-600 transition w-full sm:w-auto">
-      Kliknij
-    </button>
+    <script>
+        // Lista miłych rzeczy do wylosowania
+        const compliments = [
+            "Jesteś absolutnie wyjątkową osobą! 🌟",
+            "Twój uśmiech potrafi rozjaśnić nawet najciemniejszy dzień! 😊",
+            "Świat jest lepszym miejscem, ponieważ Ty na nim jesteś! 🌍",
+            "Masz w sobie ogromną siłę, pamiętaj o tym! 💪",
+            "Twoja energia i dobroć są zaraźliwe! ✨",
+            "Zasługujesz na wszystko, co najlepsze! 👑",
+            "Robisz większą różnicę w życiu innych, niż Ci się wydaje! ❤️",
+            "Jesteś inteligentną, piękną i wartościową osobą! 💎"
+        ];
 
-    <p id="surprise" class="mt-4 text-lg sm:text-xl font-semibold text-purple-600 hidden">
-      Kocham cię bardzo i nic nigdy tego nie zmieni, zawsze będziesz moim oczkiem w głowie. Dbaj o siebie, proszę.
-    </p>
-  </div>
+        let lastIndex = -1;
 
-  <script>
-    function celebrate() {
-      document.getElementById('surprise').classList.remove('hidden');
+        function revealMagic() {
+            // 1. Efekt Konfetti
+            confetti({
+                particleCount: 150,
+                spread: 80,
+                origin: { y: 0.6 }
+            });
 
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
+            // 2. Losowanie komplementu (tak, żeby się nie powtórzył od razu)
+            let randomIndex;
+            do {
+                randomIndex = Math.floor(Math.random() * compliments.length);
+            } while (randomIndex === lastIndex);
+            
+            lastIndex = randomIndex;
 
-      setTimeout(() => {
-        confetti({ particleCount: 100, spread: 120, origin: { x: 0.1 } });
-        confetti({ particleCount: 100, spread: 120, origin: { x: 0.9 } });
-      }, 300);
-    }
-  </script>
+            const complimentText = document.getElementById('compliment');
+            
+            // Efekt płynnego przejścia tekstu
+            complimentText.style.opacity = 0;
+            complimentText.style.transform = "scale(0.8)";
+            
+            setTimeout(() => {
+                complimentText.innerText = compliments[randomIndex];
+                complimentText.style.opacity = 1;
+                complimentText.style.transform = "scale(1)";
+            }, 200);
+
+            // 3. Tworzenie małego latającego serduszka w tle przy każdym kliknięciu
+            createHeart();
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerText = ['❤️', '💖', '✨', '🌸', '⭐'][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's'; // 3-6s
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px'; // 20-40px
+            
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+    </script>
 </body>
 </html>
-
-
